@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class FlyingًEnemy : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 3f;
-    [SerializeField] private float distanceX = 5f;
-    [SerializeField] private float distanceY = 3f;
+    [SerializeField] private float moveSpeed ;
+    [SerializeField] private float distanceX ;
+    [SerializeField] private float distanceY;
     private Vector2 startPos;
     private Vector2 targetPos;
     private bool movingToTarget = true;
@@ -13,6 +13,7 @@ public class FlyingًEnemy : MonoBehaviour
     {
         startPos = transform.position;
         targetPos = startPos + new Vector2(distanceX, distanceY);
+       
     }
 
     // Update is called once per frame
@@ -25,5 +26,6 @@ public class FlyingًEnemy : MonoBehaviour
         {
             movingToTarget = !movingToTarget;
         }
+          
     }
 }
