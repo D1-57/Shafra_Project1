@@ -119,6 +119,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &590259585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 590259586}
+  m_Layer: 0
+  m_Name: Grounded
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &590259586
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590259585}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.002, y: -0.481, z: 0.07676969}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 862246199}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &648699657
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,7 +215,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -309,8 +340,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 302117c579f67cc4f951e926f37747cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 0
-  MoveSpeed: 100
+  MoveSpeed: 3
+  JumpForce: 7
+  groundCheck: {fileID: 590259586}
+  groundCheckRadius: 0.05
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!50 &862246192
 Rigidbody2D:
   serializedVersion: 5
@@ -337,7 +373,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &862246196
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -384,6 +420,11 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.9166667, y: 1}
   m_EdgeRadius: 0
+--- !u!4 &862246199 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2571266423931152228, guid: dae6d6c850c4f024cb7d984c67bf0b06, type: 3}
+  m_PrefabInstance: {fileID: 4632164850865032261}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1134175215
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,7 +436,7 @@ GameObject:
   - component: {fileID: 1134175218}
   - component: {fileID: 1134175217}
   - component: {fileID: 1134175216}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -711,6 +752,10 @@ PrefabInstance:
       propertyPath: distanceY
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8244778357606157714, guid: 90e293819acd9264997adf4ca2c955c6, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -770,7 +815,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2571266423931152228, guid: dae6d6c850c4f024cb7d984c67bf0b06, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 590259586}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 669291291312088887, guid: dae6d6c850c4f024cb7d984c67bf0b06, type: 3}
       insertIndex: -1
