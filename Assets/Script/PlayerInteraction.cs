@@ -1,14 +1,17 @@
 using UnityEngine;
+using TMPro;          
 
 public class PlayerInteraction : MonoBehaviour
 {
     [Header("Player Settings")]
-    public int PlayerHealth = 3; // Start with 3 hearts
+    public int PlayerHealth = 3;
+    private Vector2 startPosition; // first location to restart from
 
     [Header("Hearts UI")]
     public GameObject Heart1;
     public GameObject Heart2;
     public GameObject Heart3;
+    public TMP_Text keyTMP;
 
     [Header("UI Screens")]
     public GameObject DeathScreen;
@@ -18,80 +21,117 @@ public class PlayerInteraction : MonoBehaviour
 
     [Header("Door Settings")]
     public Animator DoorAnim;
-    public int DoorIntValue = 0; // Integer value for Animator parameter
+    public int Key;
+    public int RequiredKeys = 3; // number of keys needed to unlock door
 
     private bool isPaused = false;
+    private Rigidbody2D rb;
 
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+        startPosition = transform.position; // save starting point
+
         if (PauseScreen != null)
             PauseScreen.SetActive(false);
+
+        if (WinScreen != null)
+            WinScreen.SetActive(false);
+
+        if (DeathScreen != null)
+            DeathScreen.SetActive(false);
+
+        UpdateKeyUI();
     }
 
     void Update()
     {
-        // Update hearts based on health
-        switch (PlayerHealth)
-        {
-            case 3:
-                Heart1.SetActive(true);
-                Heart2.SetActive(true);
-                Heart3.SetActive(true);
-                break;
+        UpdateHearts();
 
-            case 2:
-                Heart1.SetActive(true);
-                Heart2.SetActive(true);
-                Heart3.SetActive(false);
-                break;
-
-            case 1:
-                Heart1.SetActive(true);
-                Heart2.SetActive(false);
-                Heart3.SetActive(false);
-                break;
-
-            case 0:
-                Heart1.SetActive(false);
-                Heart2.SetActive(false);
-                Heart3.SetActive(false);
-
-                if (DeathScreen != null)
-                    DeathScreen.SetActive(true);
-
-                Time.timeScale = 0f; // Stop game when player dies
-                break;
-        }
-
-        // Pause/Resume when pressing ESC
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
             TogglePause();
+    }
+
+    void UpdateHearts()
+    {
+        // update heart visibility
+        Heart1.SetActive(PlayerHealth >= 1);
+        Heart2.SetActive(PlayerHealth >= 2);
+        Heart3.SetActive(PlayerHealth >= 3);
+
+        // death condition
+        if (PlayerHealth <= 0)
+        {
+            if (DeathScreen != null)
+                DeathScreen.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        // Key pickup
+        // --- Pick up key ---
         if (collision.gameObject.CompareTag("Key"))
         {
-            DoorIntValue++;
+            Key++;
             Destroy(collision.gameObject);
 
-            // Open door when player gets a key
             if (DoorAnim != null)
             {
-                DoorAnim.SetInteger("Door", DoorIntValue);
-                Debug.Log("Door animation triggered with int = " + DoorIntValue);
+                DoorAnim.SetInteger("Key", Key);
+                Debug.Log("Door animation triggered with int = " + Key);
+            }
+
+            UpdateKeyUI();
+        }
+
+        // --- Enter door (win condition) ---
+        if (collision.gameObject.CompareTag("Door"))
+        {
+            if (Key >= RequiredKeys)
+            {
+                if (WinScreen != null)
+                    WinScreen.SetActive(true);
+
+                Time.timeScale = 0f; // stop the game
+                Debug.Log("Player entered door! You Win!");
+            }
+            else
+            {
+                Debug.Log("Door is locked. Need more keys!");
             }
         }
+
+        // --- If hit by enemy ---
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            PlayerHealth--;
+            PlayerHit();
         }
     }
 
-    // Toggle Pause/Resume
+    void PlayerHit()
+    {
+        PlayerHealth--;
+
+        if (PlayerHealth > 0)
+        {
+            // Move player back to starting position
+            transform.position = startPosition;
+            rb.linearVelocity = Vector2.zero;
+            Debug.Log("Player hit! Returned to start position.");
+        }
+        else
+        {
+            Debug.Log("Player died!");
+        }
+    }
+
+   void UpdateKeyUI()
+    { 
+        if (keyTMP != null) keyTMP.text = "Keys: " + Key;
+        
+     }
+    // --- Pause controls ---
     public void TogglePause()
     {
         if (isPaused)
@@ -104,10 +144,8 @@ public class PlayerInteraction : MonoBehaviour
     {
         Time.timeScale = 0f;
         isPaused = true;
-
         if (PauseScreen != null)
             PauseScreen.SetActive(true);
-
         Debug.Log("Game Paused");
     }
 
@@ -115,10 +153,8 @@ public class PlayerInteraction : MonoBehaviour
     {
         Time.timeScale = 1f;
         isPaused = false;
-
         if (PauseScreen != null)
             PauseScreen.SetActive(false);
-
         Debug.Log("Game Resumed");
     }
 }
