@@ -133,7 +133,7 @@ public class PlayerInteraction : MonoBehaviour
 
    void UpdateKeyUI()
     { 
-        if (keyTMP != null) keyTMP.text = "Keys: " + Key;
+        if (keyTMP != null) keyTMP.text = ": " + Key+ "/3 ";
         
      }
     // --- Pause controls ---
