@@ -18,7 +18,7 @@ public class ButtonManager : MonoBehaviour
     public void PlayGame()
     {
         // Replace "GameScene" with your actual gameplay scene name
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("Level1");
     }
 
     // Exit button: quits the application
