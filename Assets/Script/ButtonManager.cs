@@ -18,6 +18,7 @@ public class ButtonManager : MonoBehaviour
     public void PlayGame()
     {
         // Replace "GameScene" with your actual gameplay scene name
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Level1");
     }
 

@@ -47316,6 +47316,11 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &848100117 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4680759730251008428, guid: e8fb768d57b5ef9419693a28a8535a84, type: 3}
+  m_PrefabInstance: {fileID: 175572208}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1110790882
 GameObject:
   m_ObjectHideFlags: 0
@@ -50996,17 +51001,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 414657772552651060, guid: dae6d6c850c4f024cb7d984c67bf0b06, type: 3}
+      propertyPath: Heart1
+      value: 
+      objectReference: {fileID: 1468345432957573156}
+    - target: {fileID: 414657772552651060, guid: dae6d6c850c4f024cb7d984c67bf0b06, type: 3}
+      propertyPath: Heart2
+      value: 
+      objectReference: {fileID: 104140676435293191}
+    - target: {fileID: 414657772552651060, guid: dae6d6c850c4f024cb7d984c67bf0b06, type: 3}
+      propertyPath: Heart3
+      value: 
+      objectReference: {fileID: 2959743505856250942}
+    - target: {fileID: 414657772552651060, guid: dae6d6c850c4f024cb7d984c67bf0b06, type: 3}
+      propertyPath: keyTMP
+      value: 
+      objectReference: {fileID: 1022545274337029529}
+    - target: {fileID: 414657772552651060, guid: dae6d6c850c4f024cb7d984c67bf0b06, type: 3}
+      propertyPath: DoorAnim
+      value: 
+      objectReference: {fileID: 848100117}
+    - target: {fileID: 414657772552651060, guid: dae6d6c850c4f024cb7d984c67bf0b06, type: 3}
+      propertyPath: WinScreen
+      value: 
+      objectReference: {fileID: 7667352340464575546}
+    - target: {fileID: 414657772552651060, guid: dae6d6c850c4f024cb7d984c67bf0b06, type: 3}
+      propertyPath: DeathScreen
+      value: 
+      objectReference: {fileID: 1186595690476978840}
     - target: {fileID: 669291291312088887, guid: dae6d6c850c4f024cb7d984c67bf0b06, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2571266423931152228, guid: dae6d6c850c4f024cb7d984c67bf0b06, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -105
+      value: 4.4
       objectReference: {fileID: 0}
     - target: {fileID: 2571266423931152228, guid: dae6d6c850c4f024cb7d984c67bf0b06, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.2
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2571266423931152228, guid: dae6d6c850c4f024cb7d984c67bf0b06, type: 3}
       propertyPath: m_LocalPosition.z
@@ -51716,9 +51749,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8837240378032980817}
-        m_TargetAssemblyTypeName: Pause_menu, Assembly-CSharp
-        m_MethodName: MainMenu
+      - m_Target: {fileID: 1374481580800144384}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
+        m_MethodName: GoBackToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -51908,9 +51941,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8595194031604760067}
-        m_TargetAssemblyTypeName: Pause_menu, Assembly-CSharp
-        m_MethodName: Play
+      - m_Target: {fileID: 7567007926073528994}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
+        m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -52659,9 +52692,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8837240378032980817}
-        m_TargetAssemblyTypeName: Pause_menu, Assembly-CSharp
-        m_MethodName: Play
+      - m_Target: {fileID: 1374481580800144384}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
+        m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -52727,9 +52760,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8595194031604760067}
-        m_TargetAssemblyTypeName: Pause_menu, Assembly-CSharp
-        m_MethodName: Stop
+      - m_Target: {fileID: 7567007926073528994}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
+        m_MethodName: GoBackToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -52760,7 +52793,6 @@ GameObject:
   - component: {fileID: 3663221574853421333}
   - component: {fileID: 6646534911942264823}
   - component: {fileID: 1374481580800144384}
-  - component: {fileID: 8837240378032980817}
   m_Layer: 5
   m_Name: Win
   m_TagString: Untagged
@@ -53170,19 +53202,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &8837240378032980817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7667352340464575546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ca03476fed50834b9062d426b2d683e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PauseMenueCanvas: {fileID: 7667352340464575546}
 --- !u!1 &8931683833035872755
 GameObject:
   m_ObjectHideFlags: 0

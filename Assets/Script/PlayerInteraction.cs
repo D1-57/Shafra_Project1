@@ -93,9 +93,11 @@ public class PlayerInteraction : MonoBehaviour
             if (Key >= RequiredKeys)
             {
                 if (WinScreen != null)
+                {
                     WinScreen.SetActive(true);
 
-                Time.timeScale = 0f; // stop the game
+                    Time.timeScale = 0f; // stop the game
+                }
                 Debug.Log("Player entered door! You Win!");
             }
             else

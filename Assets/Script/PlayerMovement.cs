@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
     }
+    
 
     void Update()
     {
@@ -56,5 +57,9 @@ public class PlayerMovement : MonoBehaviour
         // Draw ground check circle in editor
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+    }
+    private void Awake()
+    {
+        Time.timeScale = 1f;
     }
 }
