@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public AudioManager ad;
     private Animator anim;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -35,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             Jump();
+            ad.JumpSound();
         }
     }
 
