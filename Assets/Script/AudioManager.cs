@@ -13,20 +13,13 @@ public class AudioManager : MonoBehaviour
     public AudioClip jump;
     public AudioClip Key;
     public AudioClip Dam;
+    public AudioClip wins;
 
    
 
     void Start()
     {
-        
 
-        // Add listeners
-        musicSlider.onValueChanged.AddListener(ChangeMusicVolume);
-        sfxSlider.onValueChanged.AddListener(ChangeSFXVolume);
-
-        // Apply initial volumes
-        ChangeMusicVolume(musicSlider.value);
-        ChangeSFXVolume(sfxSlider.value);
     }
 
     public void ChangeMusicVolume(float volume)
@@ -53,6 +46,10 @@ public class AudioManager : MonoBehaviour
     {
         sfxSource.PlayOneShot(Key);
 
+    }
+    public void win()
+    {
+        sfxSource.PlayOneShot(wins);
     }
 
 }

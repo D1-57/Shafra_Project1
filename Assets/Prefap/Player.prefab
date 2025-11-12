@@ -353,6 +353,7 @@ MonoBehaviour:
   jump: {fileID: 8300000, guid: de9d41525746f4c449139e2c3ebce3e2, type: 3}
   Key: {fileID: 8300000, guid: a99b1cd8b21b92c44908d6e4e0d5f5fc, type: 3}
   Dam: {fileID: 8300000, guid: 9066bda0883cac441aaad2ead4946c2d, type: 3}
+  wins: {fileID: 8300000, guid: c9166d7e85c2ea94cbe0d67d1702a930, type: 3}
 --- !u!1 &2634036847279455416
 GameObject:
   m_ObjectHideFlags: 0
