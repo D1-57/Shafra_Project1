@@ -3,6 +3,7 @@ using TMPro;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    public AudioManager ad;
     [Header("Player Settings")]
     public int PlayerHealth = 3;
     private Vector2 startPosition; // first location to restart from
@@ -74,6 +75,7 @@ public class PlayerInteraction : MonoBehaviour
         if (collision.gameObject.CompareTag("Key"))
         {
             Key++;
+            ad.keys();
             Destroy(collision.gameObject);
 
             if (DoorAnim != null)
@@ -106,6 +108,7 @@ public class PlayerInteraction : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             PlayerHit();
+            ad.Damge();
         }
     }
 
